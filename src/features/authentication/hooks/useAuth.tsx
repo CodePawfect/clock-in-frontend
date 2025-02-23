@@ -1,32 +1,33 @@
-import { useState } from "react";
-import { loginService } from "../services/authService";
+import {loginService} from "../services/authService";
 import {User} from "../types/User"
+import {useDispatch, useSelector} from "react-redux";
+import {loginFailure, loginStart, loginSuccess} from "../authSlice.ts";
+import {RootState} from "../../../store/store.ts";
 
 export const useAuth = () => {
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const dispatch = useDispatch();
+    const {user, loading, error} = useSelector((state: RootState) => state.auth);
 
     const login = async (email: string, password: string, rememberMe: boolean) => {
-        setLoading(true);
+        dispatch(loginStart());
         try {
             const userData: User = await loginService(email, password);
-            setUser(userData);
+            dispatch(loginSuccess(userData));
+
             if (rememberMe) {
                 localStorage.setItem("user", JSON.stringify(userData));
+            } else {
+                sessionStorage.setItem("user", JSON.stringify(userData));
             }
         } catch (err) {
-            console.log(err)
-            setError("Login fehlgeschlagen. Bitte überprüfen Sie Ihre Daten.");
-        } finally {
-            setLoading(false);
+            console.error("Login error:", err);
+            dispatch(loginFailure("Login fehlgeschlagen."));
         }
     };
 
     const logout = () => {
-        setUser(null);
         localStorage.removeItem("user");
     };
 
-    return { user, login, logout, loading, error };
+    return {user, login, logout, loading, error};
 };
