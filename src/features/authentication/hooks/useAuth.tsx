@@ -1,7 +1,7 @@
 import {loginService} from "../services/authService";
 import {User} from "../types/User"
 import {useDispatch, useSelector} from "react-redux";
-import {loginFailure, loginStart, loginSuccess} from "../authSlice.ts";
+import {loginFailure, loginStart, loginSuccess, logout as logoutAction} from "../authSlice.ts";
 import {RootState} from "../../../store/store.ts";
 
 export const useAuth = () => {
@@ -27,6 +27,8 @@ export const useAuth = () => {
 
     const logout = () => {
         localStorage.removeItem("user");
+        sessionStorage.removeItem("user");
+        dispatch(logoutAction());
     };
 
     return {user, login, logout, loading, error};

@@ -7,8 +7,13 @@ interface AuthState {
     error: string | null;
 }
 
+const loadUser = (): User | null => {
+    const storedUser = localStorage.getItem("user") || sessionStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+};
+
 const initialState: AuthState = {
-    user: JSON.parse(localStorage.getItem("user") || "null"),
+    user: loadUser(),
     loading: false,
     error: null,
 };
