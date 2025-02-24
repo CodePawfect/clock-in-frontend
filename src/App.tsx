@@ -19,6 +19,12 @@ function App() {
         <>
             <Routes>
                 <Route path="/login" element={user ? <Navigate to={getHomeRedirect()}/> : <LoginForm/>}/>
+                <Route
+                    path="/admin"
+                    element={
+                        user && user.role === "admin" ? <h1>Admin Page</h1> : <Navigate to="/login" />
+                    }
+                />
                 <Route path="/" element={user ? <h1>Home Page</h1> : <Navigate to="/login"/>}/>
                 {/* Catch-all redirect */}
                 <Route path="*" element={<Navigate to={user ? "/" : "/login"}/>}/>
