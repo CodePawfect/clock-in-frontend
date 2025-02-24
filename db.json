@@ -7,6 +7,14 @@
       "name": "John Doe",
       "token": "abc123",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "email": "admin@test.de",
+      "password": "test",
+      "name": "John Wick",
+      "token": "abc123",
+      "role": "admin"
     }
   ]
 }
