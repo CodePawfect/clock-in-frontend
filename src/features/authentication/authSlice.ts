@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "./types/User";
 
 interface AuthState {
@@ -7,16 +7,21 @@ interface AuthState {
     error: string | null;
 }
 
-const loadUser = (): User | null => {
-    const storedUser = localStorage.getItem("user") || sessionStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
-};
-
 const initialState: AuthState = {
-    user: loadUser(),
+    user: null,
     loading: false,
     error: null,
 };
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export const checkSession = createAsyncThunk("auth/checkSession", async () => {
+    const response = await fetch(`${API_BASE_URL}/session`, {
+        credentials: "include",
+    });
+    if (!response.ok) throw new Error("Not authenticated");
+    return (await response.json()) as User;
+});
 
 const authSlice = createSlice({
     name: "auth",
@@ -26,17 +31,26 @@ const authSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        loginSuccess(state, action: PayloadAction<User>) {
+        loginSuccess(state, action) {
             state.user = action.payload;
             state.loading = false;
         },
-        loginFailure(state, action: PayloadAction<string>) {
+        loginFailure(state, action) {
             state.loading = false;
             state.error = action.payload;
         },
         logout(state) {
             state.user = null;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(checkSession.fulfilled, (state, action) => {
+                state.user = action.payload;
+            })
+            .addCase(checkSession.rejected, (state) => {
+                state.user = null;
+            });
     },
 });
 

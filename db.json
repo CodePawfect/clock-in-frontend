@@ -5,7 +5,8 @@
       "email": "user@test.de",
       "password": "test",
       "name": "John Doe",
-      "token": "abc123"
+      "token": "abc123",
+      "role": "user"
     }
   ]
 }
