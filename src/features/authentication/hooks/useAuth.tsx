@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import {loginService} from "../services/LoginService.ts";
 import {User} from "../types/User"
 import {useDispatch, useSelector} from "react-redux";
-import {loginFailure, loginStart, loginSuccess, logout as logoutAction} from "../authSlice.ts";
+import {loginFailure, loginStart, loginSuccess, logout as logoutAction} from "../store/authSlice.ts";
 import {RootState} from "../../../store/store.ts";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
