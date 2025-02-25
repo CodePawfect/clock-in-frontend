@@ -11,7 +11,7 @@ import Planer from "./features/planer/components/Planer.tsx";
 import Antraege from "./features/antraege/components/Antraege.tsx";
 
 // Layout component that includes the Sidebar
-const DashboardLayout = ({children}: { children: React.ReactNode }) => {
+const SidebarLayout = ({children}: { children: React.ReactNode }) => {
     return (
         <div className="flex">
             <Sidebar/>
@@ -30,7 +30,7 @@ const ProtectedRoute = ({children}: { children: React.ReactNode }) => {
         return <Navigate to="/login"/>;
     }
 
-    return <DashboardLayout>{children}</DashboardLayout>;
+    return <SidebarLayout>{children}</SidebarLayout>;
 };
 
 function App() {
