@@ -1,16 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { HomeIcon, CalendarIcon, UserIcon, UsersIcon } from '@heroicons/react/24/solid';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {HomeIcon, CalendarIcon, UserIcon, UsersIcon, Bars3Icon, XMarkIcon} from '@heroicons/react/24/solid';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
 
 type NavItemProps = {
     icon: React.ReactNode;
     label: string;
     to: string;
+    onClick?: () => void;
 };
 
-const NavItem: React.FC<NavItemProps> = ({ icon, label, to }) => (
+const NavItem: React.FC<NavItemProps> = ({icon, label, to}) => (
     <li className="flex items-center px-4 py-2 rounded-lg">
         <Link to={to} className="flex items-center text-gray-300 hover:bg-indigo-800 hover:text-white w-full">
             <div className="mr-3">{icon}</div>
@@ -21,52 +22,128 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, to }) => (
 
 const Sidebar: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 550);
+    const [isOpen, setIsOpen] = useState(!isMobile);
+
+    // Handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 550;
+            setIsMobile(mobile);
+            if (!mobile) {
+                setIsOpen(true);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // If no user is logged in, don't render the sidebar
     if (!user) {
         return null;
     }
 
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const closeSidebarOnMobile = () => {
+        if (isMobile) {
+            setIsOpen(false);
+        }
+    };
+
     const icons = {
-        home: <HomeIcon className="w-5 h-5" />,
-        calendar: <CalendarIcon className="w-5 h-5" />,
-        user: <UserIcon className="w-5 h-5" />,
-        absence: <UsersIcon className="w-5 h-5" />,
+        home: <HomeIcon className="w-5 h-5"/>,
+        calendar: <CalendarIcon className="w-5 h-5"/>,
+        user: <UserIcon className="w-5 h-5"/>,
+        absence: <UsersIcon className="w-5 h-5"/>,
+        menu: <Bars3Icon className="w-6 h-6"/>,
+        close: <XMarkIcon className="w-6 h-6"/>
     };
 
     return (
-        <div className="flex flex-col w-56 bg-indigo-900 text-white h-screen">
-            {/* Logo area */}
-            <div className="flex items-center px-4 py-6">
-                <span className="text-xl font-bold">clock:in</span>
-            </div>
-            {/* Navigation menu */}
-            <nav className="flex-1 overflow-y-auto">
-                <ul className="space-y-1 px-2">
-                    <NavItem icon={icons.home} label="Dashboard" to="/dashboard" />
-                    <NavItem icon={icons.calendar} label="Stundentafel" to="/stundentafel" />
-                </ul>
-                <div className="px-4 py-2 mt-6 mb-2 text-xs font-semibold text-gray-400 uppercase">
-                    ABWESENHEITEN
+        <>
+            {/* Mobile menu button */}
+            {isMobile && (
+                <button
+                    onClick={toggleSidebar}
+                    className="fixed top-5 right-3 z-50 p-2 bg-indigo-900 rounded-md text-white"
+                    aria-label="Toggle menu"
+                >
+                    {isOpen ? icons.close : icons.menu}
+                </button>
+            )}
+
+            {/* Sidebar */}
+            <div
+                className={`${
+                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                } fixed top-0 bottom-0 left-0 z-40 transition-transform duration-300 ease-in-out flex flex-col 
+                ${isMobile ? 'w-full' : 'w-64'} bg-indigo-900 text-white h-screen`}
+            >
+                {/* Logo area */}
+                <div className="flex items-center px-4 py-6">
+                    <span className="text-3xl font-bold">clock:in</span>
                 </div>
-                <ul className="space-y-1 px-2">
-                    <NavItem icon={icons.absence} label="Planer" to="/planer" />
-                    <NavItem icon={icons.user} label="Meine Anträge" to="/antraege" />
-                </ul>
-            </nav>
-            {/* Footer */}
-            <div className="p-4 bg-indigo-950 text-xs">
-                <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-300 rounded-full mr-2 flex items-center justify-center">
-                        {user.name ? user.name.charAt(0) : 'U'}
+                {/* Navigation menu */}
+                <nav className="flex-1 overflow-y-auto">
+                    <ul className="space-y-1 px-2">
+                        <NavItem
+                            icon={icons.home}
+                            label="Dashboard"
+                            to="/dashboard"
+                            onClick={closeSidebarOnMobile}
+                        />
+                        <NavItem
+                            icon={icons.calendar}
+                            label="Stundentafel"
+                            to="/stundentafel"
+                            onClick={closeSidebarOnMobile}
+                        />
+                    </ul>
+                    <div className="px-4 py-3 mt-5 text-s font-semibold text-gray-400 uppercase">
+                        ABWESENHEITEN
                     </div>
-                    <div>
-                        <div>{user.name || 'User'}</div>
-                        <div className="text-gray-400">'C&S GmbH'</div>
+                    <ul className="space-y-1 px-2">
+                        <NavItem
+                            icon={icons.absence}
+                            label="Planer"
+                            to="/planer"
+                            onClick={closeSidebarOnMobile}
+                        />
+                        <NavItem
+                            icon={icons.user}
+                            label="Meine Anträge"
+                            to="/antraege"
+                            onClick={closeSidebarOnMobile}
+                        />
+                    </ul>
+                </nav>
+                {/* Footer */}
+                <div className="p-4 bg-indigo-950 text-xs">
+                    <div className="flex items-center">
+                        <div className="w-8 h-8 bg-gray-300 rounded-full mr-2 flex items-center justify-center">
+                            {user.name ? user.name.charAt(0) : 'U'}
+                        </div>
+                        <div>
+                            <div>{user.name || 'User'}</div>
+                            <div className="text-gray-400">C&S GmbH</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            {/* Overlay to close sidebar on mobile */}
+            {isMobile && isOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-30"
+                    onClick={toggleSidebar}
+                    aria-hidden="true"
+                ></div>
+            )}
+        </>
     );
 };
 
