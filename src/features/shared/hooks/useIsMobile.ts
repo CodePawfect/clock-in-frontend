@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
  * @param breakpoint The width in pixels to consider as "mobile" (default: 550)
  * @returns Boolean indicating if the viewport is mobile size
  */
-export const useIsMobile = (breakpoint = 550) => {
+export const useIsMobile = (breakpoint = 720) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
 
     useEffect(() => {
