@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
             {isMobile && (
                 <button
                     onClick={toggleSidebar}
-                    className="fixed top-5 right-3 z-50 p-2 bg-indigo-900 rounded-md text-white"
+                    className="fixed top-1 right-3 z-50 p-2 bg-indigo-900 rounded-md text-white"
                     aria-label="Toggle menu"
                 >
                     {isOpen ? icons.close : icons.menu}
@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
                 ${isMobile ? 'w-full' : 'w-64'} bg-indigo-900 text-white h-screen`}
             >
                 {/* Logo area */}
-                <div className="flex items-center px-4 py-6">
+                <div className="flex items-center px-6 py-2.5 mb-10">
                     <span className="text-3xl font-bold">clock:in</span>
                 </div>
                 {/* Navigation menu */}
