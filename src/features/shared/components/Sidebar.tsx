@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {HomeIcon, CalendarIcon, UserIcon, UsersIcon, Bars3Icon, XMarkIcon} from '@heroicons/react/24/solid';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
+import useSidebarState from "../hooks/useSidebarState.ts";
 
 type NavItemProps = {
     icon: React.ReactNode;
@@ -25,37 +25,12 @@ const NavItem: React.FC<NavItemProps> = ({icon, label, navigateTo, onClick}) => 
 
 const Sidebar: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 550);
-    const [isOpen, setIsOpen] = useState(!isMobile);
-
-    // Handle window resize
-    useEffect(() => {
-        const handleResize = () => {
-            const mobile = window.innerWidth < 550;
-            setIsMobile(mobile);
-            if (!mobile) {
-                setIsOpen(true);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const { isMobile, isOpen, toggleSidebar, closeSidebarOnMobile } = useSidebarState();
 
     // If no user is logged in, don't render the sidebar
     if (!user) {
         return null;
     }
-
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const closeSidebarOnMobile = () => {
-        if (isMobile) {
-            setIsOpen(false);
-        }
-    };
 
     const icons = {
         home: <HomeIcon className="w-5 h-5"/>,

@@ -1,17 +1,9 @@
-import {useEffect, useState} from "react";
 import {Outlet} from "react-router-dom";
 import Sidebar from "./Sidebar.tsx";
+import useIsMobile from "../hooks/useIsMobile.ts";
 
 const SidebarLayout = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 550);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 550);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const isMobile = useIsMobile() ;
 
     return (
         <div className="flex h-screen">
@@ -28,6 +20,5 @@ const SidebarLayout = () => {
         </div>
     );
 };
-
 
 export default SidebarLayout;
