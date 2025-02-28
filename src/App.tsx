@@ -4,34 +4,12 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "./store/store.ts";
 import {ToastContainer} from "react-toastify";
-import Sidebar from "./features/shared/components/Sidebar.tsx";
 import Dashboard from "./features/dashboard/components/Dashboard.tsx";
 import Stundentafel from "./features/stundentafel/components/Stundentafel.tsx";
 import Planer from "./features/planer/components/Planer.tsx";
 import Antraege from "./features/antraege/components/Antraege.tsx";
-
-// Layout component that includes the Sidebar
-const SidebarLayout = ({children}: { children: React.ReactNode }) => {
-    return (
-        <div className="flex">
-            <Sidebar/>
-            <div className="flex-1">
-                {children}
-            </div>
-        </div>
-    );
-};
-
-// Protected route component
-const ProtectedRoute = ({children}: { children: React.ReactNode }) => {
-    const user = useSelector((state: RootState) => state.auth.user);
-
-    if (!user) {
-        return <Navigate to="/login"/>;
-    }
-
-    return <SidebarLayout>{children}</SidebarLayout>;
-};
+import AuthRoute from "./features/shared/components/AuthRoute.tsx";
+import SidebarLayout from "./features/shared/components/SidebarLayout.tsx";
 
 function App() {
     const user = useSelector((state: RootState) => state.auth.user);
@@ -58,31 +36,16 @@ function App() {
                 />
 
                 {/* Protected routes with Sidebar */}
-                <Route path="/dashboard" element={
-                    <ProtectedRoute>
-                        <Dashboard/>
-                    </ProtectedRoute>
-                }/>
+                <Route element={<AuthRoute/>}>
+                    <Route element={<SidebarLayout/>}>
+                        <Route path="/dashboard" element={<Dashboard/>}/>
+                        <Route path="/stundentafel" element={<Stundentafel/>}/>
+                        <Route path="/planer" element={<Planer/>}/>
+                        <Route path="/antraege" element={<Antraege/>}/>
+                    </Route>
+                </Route>
 
-                <Route path="/stundentafel" element={
-                    <ProtectedRoute>
-                        <Stundentafel/>
-                    </ProtectedRoute>
-                }/>
-
-                <Route path="/planer" element={
-                    <ProtectedRoute>
-                        <Planer/>
-                    </ProtectedRoute>
-                }/>
-
-                <Route path="/antraege" element={
-                    <ProtectedRoute>
-                        <Antraege/>
-                    </ProtectedRoute>
-                }/>
-
-                {/* Redirects */}
+                {/* Redirect other paths */}
                 <Route path="/" element={<Navigate to={getHomeRedirect()}/>}/>
                 <Route path="*" element={<Navigate to={getHomeRedirect()}/>}/>
             </Routes>

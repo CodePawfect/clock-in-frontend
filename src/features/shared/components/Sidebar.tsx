@@ -7,13 +7,16 @@ import {RootState} from '../../../store/store';
 type NavItemProps = {
     icon: React.ReactNode;
     label: string;
-    to: string;
+    navigateTo: string;
     onClick?: () => void;
 };
 
-const NavItem: React.FC<NavItemProps> = ({icon, label, to}) => (
+const NavItem: React.FC<NavItemProps> = ({icon, label, navigateTo, onClick}) => (
     <li className="flex items-center px-4 py-2 rounded-lg">
-        <Link to={to} className="flex items-center text-gray-300 hover:bg-indigo-800 hover:text-white w-full">
+        <Link
+            to={navigateTo}
+            className="flex items-center text-gray-300 hover:bg-indigo-800 hover:text-white w-full"
+            onClick={onClick}>
             <div className="mr-3">{icon}</div>
             <span>{label}</span>
         </Link>
@@ -93,13 +96,13 @@ const Sidebar: React.FC = () => {
                         <NavItem
                             icon={icons.home}
                             label="Dashboard"
-                            to="/dashboard"
+                            navigateTo="/dashboard"
                             onClick={closeSidebarOnMobile}
                         />
                         <NavItem
                             icon={icons.calendar}
                             label="Stundentafel"
-                            to="/stundentafel"
+                            navigateTo="/stundentafel"
                             onClick={closeSidebarOnMobile}
                         />
                     </ul>
@@ -110,13 +113,13 @@ const Sidebar: React.FC = () => {
                         <NavItem
                             icon={icons.absence}
                             label="Planer"
-                            to="/planer"
+                            navigateTo="/planer"
                             onClick={closeSidebarOnMobile}
                         />
                         <NavItem
                             icon={icons.user}
                             label="Meine Anträge"
-                            to="/antraege"
+                            navigateTo="/antraege"
                             onClick={closeSidebarOnMobile}
                         />
                     </ul>
@@ -134,15 +137,6 @@ const Sidebar: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Overlay to close sidebar on mobile */}
-            {isMobile && isOpen && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-30"
-                    onClick={toggleSidebar}
-                    aria-hidden="true"
-                ></div>
-            )}
         </>
     );
 };
