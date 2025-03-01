@@ -16,7 +16,6 @@ export const useAuth = () => {
         try {
             const userData: User = await loginService(email, password);
             dispatch(loginSuccess(userData));
-            toast.success("Login erfolgreich");
         } catch (err) {
             console.error("Login error:", err);
             dispatch(loginFailure("Login fehlgeschlagen"));

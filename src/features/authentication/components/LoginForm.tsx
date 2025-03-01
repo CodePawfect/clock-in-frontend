@@ -1,5 +1,5 @@
 import {useLoginForm} from "../hooks/useLoginForm.ts";
-import {useAuth} from "../hooks/useAuth.tsx";
+import {useAuth} from "../hooks/useAuth.ts";
 
 const LoginForm = () => {
     const { email, setEmail, password, setPassword, rememberMe, setRememberMe } = useLoginForm();
