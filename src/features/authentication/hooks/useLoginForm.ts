@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 export const useLoginForm = () => {
-    const [email, setEmail] = useState("");
+    const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
     return {
-        email,
-        setEmail,
+        user: user,
+        setUser: setUser,
         password,
         setPassword,
         rememberMe,

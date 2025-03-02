@@ -2,12 +2,12 @@ import {useLoginForm} from "../hooks/useLoginForm.ts";
 import {useAuth} from "../hooks/useAuth.ts";
 
 const LoginForm = () => {
-    const { email, setEmail, password, setPassword, rememberMe, setRememberMe } = useLoginForm();
+    const { user, setUser, password, setPassword, rememberMe, setRememberMe } = useLoginForm();
     const { login } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await login(email, password);
+        await login(user, password);
     };
 
     return (
@@ -16,11 +16,10 @@ const LoginForm = () => {
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Clock:In</h2>
                  <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700">E-Mail</label>
+            <label className="block text-gray-700">Benutzer</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              onChange={(e) => setUser(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-400"
               required
             />
