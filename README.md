@@ -72,6 +72,12 @@ The application integrates with a backend API for data persistence:
 - The API endpoint is configured via the `.env` file
 - API responses follow a standardized format for consistency
 
+## Generate API-Types
+
+```bash
+  npx openapi-typescript src/api/api-docs.yaml --output src/api/generated/api-types.ts
+```
+
 ## 🧪 Running Tests
 
 ```bash
