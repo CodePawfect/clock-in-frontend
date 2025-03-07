@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import { renderHook } from "@testing-library/react";
-import { act } from "react";
+import {describe, expect, it, vi} from 'vitest';
+import {renderHook} from "@testing-library/react";
+import {act} from "react";
 import * as isMobileModule from './useIsMobile';
 import useSidebarState from './useSidebarState';
 
@@ -13,7 +13,7 @@ describe('useSidebarState', () => {
     it('defaults to open on desktop', () => {
         vi.mocked(isMobileModule.default).mockReturnValue(false);
 
-        const { result } = renderHook(() => useSidebarState());
+        const {result} = renderHook(() => useSidebarState());
 
         expect(result.current.isMobile).toBe(false);
         expect(result.current.isOpen).toBe(true);
@@ -22,7 +22,7 @@ describe('useSidebarState', () => {
     it('defaults to closed on mobile', () => {
         vi.mocked(isMobileModule.default).mockReturnValue(true);
 
-        const { result } = renderHook(() => useSidebarState());
+        const {result} = renderHook(() => useSidebarState());
 
         expect(result.current.isMobile).toBe(true);
         expect(result.current.isOpen).toBe(false);
@@ -31,7 +31,7 @@ describe('useSidebarState', () => {
     it('respects initialState when provided', () => {
         vi.mocked(isMobileModule.default).mockReturnValue(true);
 
-        const { result } = renderHook(() => useSidebarState(true));
+        const {result} = renderHook(() => useSidebarState(true));
 
         expect(result.current.isMobile).toBe(true);
         expect(result.current.isOpen).toBe(true);
@@ -40,7 +40,7 @@ describe('useSidebarState', () => {
     it('toggleSidebar switches isOpen state', () => {
         vi.mocked(isMobileModule.default).mockReturnValue(false);
 
-        const { result } = renderHook(() => useSidebarState());
+        const {result} = renderHook(() => useSidebarState());
 
         expect(result.current.isOpen).toBe(true);
 
@@ -54,7 +54,7 @@ describe('useSidebarState', () => {
     it('updates isOpen when device type changes', () => {
         vi.mocked(isMobileModule.default).mockReturnValue(false);
 
-        const { result, rerender } = renderHook(() => useSidebarState());
+        const {result, rerender} = renderHook(() => useSidebarState());
 
         expect(result.current.isMobile).toBe(false);
         expect(result.current.isOpen).toBe(true);

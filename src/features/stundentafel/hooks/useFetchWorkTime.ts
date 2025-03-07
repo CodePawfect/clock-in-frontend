@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { getWeekNumber } from '../../shared/dateUtils';
+import {useEffect, useState} from 'react';
+import {getWeekNumber} from '../../shared/dateUtils';
 
 type WorkTimeResponse = {
     id: number;
@@ -65,5 +65,5 @@ export const useFetchWorkTime = (initialWeekNumber?: number, initialYear?: numbe
         fetchData();
     }, [weekNumber, year]);
 
-    return { data, loading, error, changeWeek, weekNumber, year, refetch: fetchData };
+    return {data, loading, error, changeWeek, weekNumber, year, refetch: fetchData};
 };

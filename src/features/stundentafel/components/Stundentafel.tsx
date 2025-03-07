@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from '@heroicons/react/24/solid';
+import {useState} from 'react';
+import {CalendarIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon} from '@heroicons/react/24/solid';
 import useIsMobile from "../../shared/hooks/useIsMobile.ts";
-import { useFetchWorkTime } from "../hooks/useFetchWorkTime";
-import { getWeekNumber  } from '../../shared/dateUtils';
+import {useFetchWorkTime} from "../hooks/useFetchWorkTime";
+import {getWeekNumber} from '../../shared/dateUtils';
 import {addWeeks} from "date-fns";
 
 const Stundentafel = () => {
@@ -14,7 +14,7 @@ const Stundentafel = () => {
     const year = currentDate.getFullYear();
 
     // Use our custom hook
-    const { data: entries, loading, error, changeWeek } = useFetchWorkTime(weekNumber, year);
+    const {data: entries, loading, error, changeWeek} = useFetchWorkTime(weekNumber, year);
 
     // Function to navigate to previous week
     const goToPreviousWeek = () => {
@@ -40,7 +40,7 @@ const Stundentafel = () => {
     const captureButtonContent = isMobile ? <PlusIcon className="h-5 w-8"/> : "+ Erfassen";
 
     // Format the current month and year
-    const monthName = currentDate.toLocaleString('default', { month: 'short' });
+    const monthName = currentDate.toLocaleString('default', {month: 'short'});
 
     return (
         <>

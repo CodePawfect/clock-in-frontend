@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import { RootState } from "../../../store/store"; // Adjust path as needed
+import {RootState} from "../../../store/store"; // Adjust path as needed
 import {Navigate, Outlet} from "react-router-dom";
 
 const AuthRoute = () => {
@@ -9,7 +9,7 @@ const AuthRoute = () => {
         return <Navigate to="/login"/>;
     }
 
-    return <Outlet />;
+    return <Outlet/>;
 };
 
 export default AuthRoute

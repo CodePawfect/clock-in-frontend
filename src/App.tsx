@@ -1,6 +1,6 @@
 import './App.css'
 import LoginForm from "./features/authentication/components/LoginForm.tsx";
-import {Routes, Route, Navigate} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "./store/store.ts";
 import {ToastContainer} from "react-toastify";

@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User } from "../types/User.ts";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {User} from "../types/User.ts";
 
 interface AuthState {
     user: User | null;
@@ -54,5 +54,5 @@ const authSlice = createSlice({
     },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
+export const {loginStart, loginSuccess, loginFailure, logout} = authSlice.actions;
 export default authSlice.reducer;

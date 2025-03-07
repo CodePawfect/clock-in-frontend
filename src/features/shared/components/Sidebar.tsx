@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {HomeIcon, CalendarIcon, UserIcon, UsersIcon, Bars3Icon, XMarkIcon} from '@heroicons/react/24/solid';
+import {Bars3Icon, CalendarIcon, HomeIcon, UserIcon, UsersIcon, XMarkIcon} from '@heroicons/react/24/solid';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import useSidebarState from "../hooks/useSidebarState.ts";
@@ -25,7 +25,7 @@ const NavItem: React.FC<NavItemProps> = ({icon, label, navigateTo, onClick}) => 
 
 const Sidebar: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
-    const { isMobile, isOpen, toggleSidebar, closeSidebarOnMobile } = useSidebarState();
+    const {isMobile, isOpen, toggleSidebar, closeSidebarOnMobile} = useSidebarState();
 
     // If no user is logged in, don't render the sidebar
     if (!user) {
