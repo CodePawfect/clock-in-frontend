@@ -1,9 +1,9 @@
 import {useLoginForm} from "../hooks/useLoginForm.ts";
-import {useAuth} from "../hooks/useAuth.ts";
+import {useLogin} from "../hooks/useLogin.ts";
 
 const LoginForm = () => {
-    const {user, setUser, password, setPassword, rememberMe, setRememberMe} = useLoginForm();
-    const {login} = useAuth();
+    const {user, setUser, password, setPassword} = useLoginForm();
+    const {login} = useLogin();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,15 +33,6 @@ const LoginForm = () => {
                             className="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-400"
                             required
                         />
-                    </div>
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            checked={rememberMe}
-                            onChange={() => setRememberMe(!rememberMe)}
-                            className="mr-2"
-                        />
-                        <label className="text-gray-700">Angemeldet bleiben</label>
                     </div>
                     <button
                         type="submit"
