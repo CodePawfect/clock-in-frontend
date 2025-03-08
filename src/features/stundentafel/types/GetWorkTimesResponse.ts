@@ -1,8 +1,8 @@
 export type GetWorkTimesResponse = {
-    workTimes: WorkTime[];
+    workTimes: SingleWorkTimeResponse[];
 }
 
-export type WorkTime = {
+export type SingleWorkTimeResponse = {
     username: string;
     date: string;
     hoursWorked: number;
