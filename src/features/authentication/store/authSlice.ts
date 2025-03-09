@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {User} from "../types/User.ts";
+import {toast} from "react-toastify";
 
 interface AuthState {
     user: User | null;
@@ -38,6 +39,7 @@ const authSlice = createSlice({
         loginFailure(state, action) {
             state.loading = false;
             state.error = action.payload;
+            toast.error(action.payload);
         },
         logout(state) {
             state.user = null;

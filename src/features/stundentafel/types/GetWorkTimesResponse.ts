@@ -8,4 +8,5 @@ export type SingleWorkTimeResponse = {
     hoursWorked: number;
     year: number;
     calenderWeek: number;
+    note?: string;
 }

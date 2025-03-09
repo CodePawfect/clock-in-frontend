@@ -12,7 +12,7 @@ export const useFetchWorkTime = (weekNumber: number, year: number) => {
             setLoading(true);
             try {
                 const baseUrl = import.meta.env.VITE_API_BASE_URL;
-                const getWorkTimesUrl = `${baseUrl}/api/worktimes/${year}/${weekNumber}`;
+                const getWorkTimesUrl = `${baseUrl}/api/worktimes/${weekNumber}/${year}`;
 
                 const response = await fetch(getWorkTimesUrl, {
                     method: "GET",
@@ -34,7 +34,8 @@ export const useFetchWorkTime = (weekNumber: number, year: number) => {
                         date: singleWorkTimeResponse.date,
                         hoursWorked: singleWorkTimeResponse.hoursWorked,
                         year: singleWorkTimeResponse.year,
-                        calenderWeek: singleWorkTimeResponse.calenderWeek
+                        calenderWeek: singleWorkTimeResponse.calenderWeek,
+                        note: singleWorkTimeResponse.note
                     })
                 );
 

@@ -26,7 +26,8 @@ export const useLogin = () => {
         });
 
         if (!response.ok) {
-            dispatch(loginFailure("Login failed"));
+            const errorData = await response.json();
+            dispatch(loginFailure(errorData.error || errorData.message));
             return;
         }
 
