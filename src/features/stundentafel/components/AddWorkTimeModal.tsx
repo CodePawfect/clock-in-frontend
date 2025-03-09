@@ -1,16 +1,22 @@
-import {useState, FormEvent} from "react";
+import {FormEvent} from "react";
 
-//TODO: extract hooks in dedicated files and use the modal in stundentafel
-export const AddWorkTimeModal = ({ open }: { open: boolean }) => {
-    const [isOpen, setIsOpen] = useState(open);
-    const [date, setDate] = useState("");
-    const [hours, setHours] = useState(0);
-    const [note, setNote] = useState("");
+interface AddWorkTimeModalProps {
+    setOpen: (open: boolean) => void;
+    setNewWorkTimeDate: (date: string) => void;
+    setNewWorkTimeHours: (hours: number) => void;
+    setNewWorkTimeNote: (note: string) => void;
+}
+
+export const AddWorkTimeModal = ({
+                                     setOpen,
+                                     setNewWorkTimeDate,
+                                     setNewWorkTimeHours,
+                                     setNewWorkTimeNote
+                                 }: AddWorkTimeModalProps) => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(isOpen, date, hours, note);
-        setIsOpen(false);
+        setOpen(false);
     };
 
     return (
@@ -22,7 +28,7 @@ export const AddWorkTimeModal = ({ open }: { open: boolean }) => {
                     <input type="date"
                            id="datum"
                            name="Datum"
-                           onChange={(e) => setDate(e.target.value)}
+                           onChange={(e) => setNewWorkTimeDate(e.target.value)}
                            required/>
                 </div>
                 <div>
@@ -30,7 +36,7 @@ export const AddWorkTimeModal = ({ open }: { open: boolean }) => {
                     <input type="number"
                            id="stunden"
                            name="stunden"
-                           onChange={(e) => setHours(parseInt(e.target.value))}
+                           onChange={(e) => setNewWorkTimeHours(Number(e.target.value))}
                            required/>
                 </div>
                 <div>
@@ -38,7 +44,7 @@ export const AddWorkTimeModal = ({ open }: { open: boolean }) => {
                     <input type="text"
                            id="note"
                            name="Notiz"
-                           onChange={(e) => setNote(e.target.value)}
+                           onChange={(e) => setNewWorkTimeNote(e.target.value)}
                     />
                 </div>
                 <button type="submit">Submit</button>
