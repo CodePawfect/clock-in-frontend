@@ -3,15 +3,16 @@ import {Bars3Icon, CalendarIcon, HomeIcon, UserIcon, UsersIcon, XMarkIcon} from 
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import useSidebarState from "../hooks/useSidebarState.ts";
+import {ReactNode} from "react";
 
 type NavItemProps = {
-    icon: React.ReactNode;
+    icon: ReactNode;
     label: string;
     navigateTo: string;
     onClick?: () => void;
 };
 
-const NavItem: React.FC<NavItemProps> = ({icon, label, navigateTo, onClick}) => (
+const NavItem = ({icon, label, navigateTo, onClick}: NavItemProps) => (
     <li className="flex items-center px-4 py-2 rounded-lg">
         <Link
             to={navigateTo}
@@ -23,7 +24,7 @@ const NavItem: React.FC<NavItemProps> = ({icon, label, navigateTo, onClick}) => 
     </li>
 );
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const {isMobile, isOpen, toggleSidebar, closeSidebarOnMobile} = useSidebarState();
 
@@ -103,10 +104,10 @@ const Sidebar: React.FC = () => {
                 <div className="p-4 bg-indigo-950 text-xs">
                     <div className="flex items-center">
                         <div className="w-8 h-8 bg-gray-300 rounded-full mr-2 flex items-center justify-center">
-                            {user.name ? user.name.charAt(0) : 'U'}
+                            {user.username ? user.username.charAt(0) : 'U'}
                         </div>
                         <div>
-                            <div>{user.name || 'User'}</div>
+                            <div>{user.username || 'User'}</div>
                             <div className="text-gray-400">C&S GmbH</div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ const Stundentafel = () => {
     const monthName = currentDate.toLocaleString('default', {month: 'short'});
 
     const isMobile = useIsMobile();
-    const captureButtonContent = isMobile ? <PlusIcon className="h-5 w-8"/> : "+ Erfassen";
+    const captureWorkTimeButtonText = isMobile ? <PlusIcon className="h-5 w-8"/> : "+ Erfassen";
 
        return (
         <>
@@ -52,7 +52,7 @@ const Stundentafel = () => {
                 </div>
                 <button
                     className="px-4 py-2 bg-indigo-900 text-white font-medium text-sm hover:bg-indigo-600 rounded-md border border-indigo-900">
-                    {captureButtonContent}
+                    {captureWorkTimeButtonText}
                 </button>
             </div>
 
