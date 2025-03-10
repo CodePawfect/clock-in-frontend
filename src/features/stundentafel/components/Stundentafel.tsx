@@ -12,7 +12,14 @@ const Stundentafel = () => {
     const {workTimes, loading, error} = useFetchWorkTime(weekNumber, year);
     const monthName = currentDate.toLocaleString('default', {month: 'short'});
 
-    const {open, setOpen, setNewWorkTimeDate, setNewWorkTimeHours, setNewWorkTimeNote} = useAddWorkTimeModal();
+    const {
+        open,
+        setOpen,
+        setNewWorkTimeDate,
+        setNewWorkTimeHours,
+        setNewWorkTimeNote,
+        createWorkTime
+    } = useAddWorkTimeModal();
 
     const isMobile = useIsMobile();
     const captureWorkTimeButtonText = isMobile ? <PlusIcon className="h-5 w-8"/> : "+ Erfassen";
@@ -55,6 +62,7 @@ const Stundentafel = () => {
                     </button>
                 </div>
                 <button
+                    onClick={() => setOpen(true)}
                     className="px-4 py-2 bg-indigo-900 text-white font-medium text-sm hover:bg-indigo-600 rounded-md border border-indigo-900">
                     {captureWorkTimeButtonText}
                 </button>
@@ -104,13 +112,13 @@ const Stundentafel = () => {
                     </table>
                 )}
             </div>
-            //TODO: finish usage of AddWorkTimeModal
             {open && (
                 <AddWorkTimeModal
                     setOpen={setOpen}
                     setNewWorkTimeDate={setNewWorkTimeDate}
                     setNewWorkTimeHours={setNewWorkTimeHours}
                     setNewWorkTimeNote={setNewWorkTimeNote}
+                    createWorkTime={createWorkTime}
                 />
             )}
         </>
