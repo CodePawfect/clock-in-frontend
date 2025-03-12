@@ -27,6 +27,7 @@ export const useAddWorkTimeModal = () => {
         setNewWorkTimeNote("")
         setNewWorkTimeDate("")
         setNewWorkTimeHours(0)
+        setOpen(false)
     }
 
     return { open, setOpen, setNewWorkTimeDate, setNewWorkTimeHours, setNewWorkTimeNote, createWorkTime };
