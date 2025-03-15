@@ -1,4 +1,5 @@
 export type WorkTime = {
+    id: string;
     username: string;
     date: string;
     hoursWorked: number;

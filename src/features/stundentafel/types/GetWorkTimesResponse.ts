@@ -3,6 +3,7 @@ export type GetWorkTimesResponse = {
 }
 
 export type SingleWorkTimeResponse = {
+    id: string;
     username: string;
     date: string;
     hoursWorked: number;

@@ -30,6 +30,7 @@ export const useFetchWorkTime = (weekNumber: number, year: number) => {
 
                 const mappedWorkTimes = GetWorkTimesResponse.workTimes.map(
                     (singleWorkTimeResponse: SingleWorkTimeResponse): WorkTime => ({
+                        id: singleWorkTimeResponse.id,
                         username: singleWorkTimeResponse.username,
                         date: singleWorkTimeResponse.date,
                         hoursWorked: singleWorkTimeResponse.hoursWorked,
