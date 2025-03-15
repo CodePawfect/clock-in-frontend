@@ -16,7 +16,7 @@ function App() {
 
     const getHomeRedirect = () => {
         if (user) {
-            return user.role === "admin" ? "/admin" : "/dashboard";
+            return user.roles.includes("admin") ? "/admin" : "/dashboard";
         }
         return "/login";
     };
@@ -31,7 +31,7 @@ function App() {
                 <Route
                     path="/admin"
                     element={
-                        user && user.role === "admin" ? <h1>Admin Page</h1> : <Navigate to="/login"/>
+                        user && user.roles.includes("admin") ? <h1>Admin Page</h1> : <Navigate to="/login"/>
                     }
                 />
 
