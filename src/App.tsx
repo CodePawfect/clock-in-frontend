@@ -5,9 +5,8 @@ import {useSelector} from "react-redux";
 import {RootState} from "./store/store.ts";
 import {ToastContainer} from "react-toastify";
 import Dashboard from "./features/dashboard/components/Dashboard.tsx";
-import Stundentafel from "./features/stundentafel/components/Stundentafel.tsx";
-import Planer from "./features/planer/components/Planer.tsx";
-import Antraege from "./features/antraege/components/Antraege.tsx";
+import WorkTimePage from "./features/worktimes/components/WorkTimePage.tsx";
+import PlanPage from "./features/plan/components/PlanPage.tsx";
 import AuthRoute from "./features/shared/components/AuthRoute.tsx";
 import SidebarLayout from "./features/shared/components/SidebarLayout.tsx";
 
@@ -39,9 +38,8 @@ function App() {
                 <Route element={<AuthRoute/>}>
                     <Route element={<SidebarLayout/>}>
                         <Route path="/dashboard" element={<Dashboard/>}/>
-                        <Route path="/stundentafel" element={<Stundentafel/>}/>
-                        <Route path="/planer" element={<Planer/>}/>
-                        <Route path="/antraege" element={<Antraege/>}/>
+                        <Route path="/times" element={<WorkTimePage/>}/>
+                        <Route path="/plan" element={<PlanPage/>}/>
                     </Route>
                 </Route>
 

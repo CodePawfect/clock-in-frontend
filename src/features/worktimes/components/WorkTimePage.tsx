@@ -5,7 +5,7 @@ import {useFetchWorkTime} from '../hooks/useFetchWorkTime.ts';
 import {useAddWorkTimeModal} from "../hooks/useAddWorkTimeModal.ts";
 import {AddWorkTimeModal} from "./AddWorkTimeModal.tsx";
 
-const Stundentafel = () => {
+const WorkTimePage = () => {
     const currentDate = new Date();
     const weekNumber = getWeekNumber(currentDate);
     const year = currentDate.getFullYear();
@@ -125,4 +125,4 @@ const Stundentafel = () => {
     );
 }
 
-export default Stundentafel;
+export default WorkTimePage;

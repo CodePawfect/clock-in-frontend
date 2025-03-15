@@ -1,7 +1,7 @@
-function Planer() {
+function PlanPage() {
     return (
         <h1>Planer</h1>
     )
 }
 
-export default Planer
+export default PlanPage

@@ -68,6 +68,9 @@ const Sidebar = () => {
                 </div>
                 {/* Navigation menu */}
                 <nav className="flex-1 overflow-y-auto">
+                    <div className="px-4 py-3 mt-5 text-s font-semibold text-gray-400 uppercase">
+                        ARBEITSZEITEN
+                    </div>
                     <ul className="space-y-1 px-2">
                         <NavItem
                             icon={icons.home}
@@ -77,25 +80,19 @@ const Sidebar = () => {
                         />
                         <NavItem
                             icon={icons.calendar}
-                            label="Stundentafel"
-                            navigateTo="/stundentafel"
+                            label="Arbeitszeit erfassen"
+                            navigateTo="/times"
                             onClick={closeSidebarOnMobile}
                         />
                     </ul>
                     <div className="px-4 py-3 mt-5 text-s font-semibold text-gray-400 uppercase">
-                        ABWESENHEITEN
+                        EVENT PLANUNG
                     </div>
                     <ul className="space-y-1 px-2">
                         <NavItem
                             icon={icons.absence}
-                            label="Planer"
-                            navigateTo="/planer"
-                            onClick={closeSidebarOnMobile}
-                        />
-                        <NavItem
-                            icon={icons.user}
-                            label="Meine Anträge"
-                            navigateTo="/antraege"
+                            label="Einteilung"
+                            navigateTo="/plan"
                             onClick={closeSidebarOnMobile}
                         />
                     </ul>
