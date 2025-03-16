@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    format:
+      run: npm run format
+      glob: "*.{js,jsx,ts,tsx}"
