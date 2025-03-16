@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@evilmartians/lefthook": "^1.11.3",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.8",
