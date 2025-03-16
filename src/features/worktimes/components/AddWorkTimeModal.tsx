@@ -6,6 +6,7 @@ interface AddWorkTimeModalProps {
     setNewWorkTimeHours: (hours: number) => void;
     setNewWorkTimeNote: (note: string) => void;
     createWorkTime: () => Promise<void>;
+    onWorkTimeAdded: () => Promise<void>;
 }
 
 export const AddWorkTimeModal = ({
@@ -13,12 +14,14 @@ export const AddWorkTimeModal = ({
                                      setNewWorkTimeDate,
                                      setNewWorkTimeHours,
                                      setNewWorkTimeNote,
-                                     createWorkTime
+                                     createWorkTime,
+                                     onWorkTimeAdded
                                  }: AddWorkTimeModalProps) => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         await createWorkTime();
+        await onWorkTimeAdded();
         setOpen(false);
     };
 

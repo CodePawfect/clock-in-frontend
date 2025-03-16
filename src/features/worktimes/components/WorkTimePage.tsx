@@ -9,7 +9,7 @@ const WorkTimePage = () => {
     const currentDate = new Date();
     const weekNumber = getWeekNumber(currentDate);
     const year = currentDate.getFullYear();
-    const {workTimes, loading, error} = useFetchWorkTime(weekNumber, year);
+    const {workTimes, loading, error, fetchWorkTimes} = useFetchWorkTime(weekNumber, year);
     const monthName = currentDate.toLocaleString('default', {month: 'short'});
 
     const {
@@ -23,6 +23,11 @@ const WorkTimePage = () => {
 
     const isMobile = useIsMobile();
     const captureWorkTimeButtonText = isMobile ? <PlusIcon className="h-5 w-8"/> : "+ Erfassen";
+
+    const reFetchOnWorkTimeAdded = async () => {
+        return await fetchWorkTimes();
+    }
+
 
     return (
         <>
@@ -119,6 +124,7 @@ const WorkTimePage = () => {
                     setNewWorkTimeHours={setNewWorkTimeHours}
                     setNewWorkTimeNote={setNewWorkTimeNote}
                     createWorkTime={createWorkTime}
+                    onWorkTimeAdded={reFetchOnWorkTimeAdded}
                 />
             )}
         </>
