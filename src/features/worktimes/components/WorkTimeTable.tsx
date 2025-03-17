@@ -4,18 +4,17 @@ import { TrashIcon } from '@heroicons/react/24/solid';
 const WorkTimeTable = ({
   workTimes,
   deleteWorkTime,
-    reFetchWorkTimes
+  reFetchWorkTimes,
 }: {
   workTimes: WorkTime[];
   deleteWorkTime: (id: string) => Promise<void>;
-    reFetchWorkTimes: () => Promise<void>;
+  reFetchWorkTimes: () => Promise<void>;
 }) => {
-
-    const handleDelete = async (id: string) => {
-        await deleteWorkTime(id)
-            .then(() => reFetchWorkTimes())
-            .catch(error => console.error("Error deleting or refreshing:", error));;
-    }
+  const handleDelete = async (id: string) => {
+    await deleteWorkTime(id)
+      .then(() => reFetchWorkTimes())
+      .catch((error) => console.error('Error deleting or refreshing:', error));
+  };
 
   return (
     <table className="min-w-full bg-white border border-gray-200">
@@ -38,11 +37,7 @@ const WorkTimeTable = ({
               <td className="py-2 px-4 border border-gray-300">{workTime.note}</td>
               <td className="py-2 px-0 border border-gray-300 w-12">
                 <div className="flex justify-center items-center">
-                  <button
-                    className="focus:outline-none"
-                    aria-label="Delete"
-                    onClick={() => handleDelete(workTime.id)}
-                  >
+                  <button className="focus:outline-none" aria-label="Delete" onClick={() => handleDelete(workTime.id)}>
                     <TrashIcon className="h-5 w-5 text-red-500 hover:text-red-700" />
                   </button>
                 </div>
