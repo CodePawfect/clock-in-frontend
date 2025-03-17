@@ -5,21 +5,19 @@ import { useAddWorkTimeModal } from '../hooks/useAddWorkTimeModal.ts';
 import { AddWorkTimeModal } from './AddWorkTimeModal.tsx';
 import WorkTimeTable from './WorkTimeTable.tsx';
 import WorkTimeHeader from './WorkTimeHeader.tsx';
+import useDeleteWorkTime from "../hooks/useDeleteWorkTime.ts";
 
 const WorkTimePage = () => {
   const today = new Date();
   const weekNumber = getWeekNumber(today);
   const year = today.getFullYear();
   const { workTimes, loading, error, fetchWorkTimes } = useFetchWorkTime(weekNumber, year);
+  const  deleteWorkTime  = useDeleteWorkTime();
 
   const { open, setOpen, setNewWorkTimeDate, setNewWorkTimeHours, setNewWorkTimeNote, createWorkTime } =
     useAddWorkTimeModal();
 
   const isMobile = useIsMobile();
-
-  const reFetchOnWorkTimeAdded = async () => {
-    return await fetchWorkTimes();
-  };
 
   return (
     <>
@@ -35,7 +33,7 @@ const WorkTimePage = () => {
             <p>Fehler beim Laden der Daten: {error.message}</p>
           </div>
         ) : (
-          <WorkTimeTable workTimes={workTimes} />
+          <WorkTimeTable workTimes={workTimes} deleteWorkTime={deleteWorkTime} reFetchWorkTimes={fetchWorkTimes} />
         )}
       </div>
 
@@ -46,7 +44,7 @@ const WorkTimePage = () => {
           setNewWorkTimeHours={setNewWorkTimeHours}
           setNewWorkTimeNote={setNewWorkTimeNote}
           createWorkTime={createWorkTime}
-          onWorkTimeAdded={reFetchOnWorkTimeAdded}
+          reFetchWorkTimes={fetchWorkTimes}
         />
       )}
     </>
