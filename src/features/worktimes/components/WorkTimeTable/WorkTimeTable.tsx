@@ -1,4 +1,4 @@
-import { WorkTime } from './models/WorkTime.ts';
+import { WorkTime } from './types/WorkTime.ts';
 
 export default function WorkTimeTable({
   workTimes,

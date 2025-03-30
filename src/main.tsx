@@ -2,8 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import SignInPage from './features/worktimes/pages/auth/SignInPage.tsx';
-import WorkTimePage from './features/worktimes/pages/worktime/WorkTimePage.tsx';
+import SignInPage from './features/auth/pages/SignInPage.tsx';
+import WorkTimePage from './features/worktimes/pages/WorkTimePage.tsx';
 
 const router = createBrowserRouter([
   { path: '/signin', element: <SignInPage /> },
