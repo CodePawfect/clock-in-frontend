@@ -1,6 +1,10 @@
 import { WorkTime } from './models/WorkTime.ts';
 
-function WorkTimeTable({ workTimes }: { workTimes: WorkTime[] }) {
+export default function WorkTimeTable({
+  workTimes,
+}: {
+  workTimes: WorkTime[];
+}) {
   return (
     <div>
       <table>
@@ -24,5 +28,3 @@ function WorkTimeTable({ workTimes }: { workTimes: WorkTime[] }) {
     </div>
   );
 }
-
-export default WorkTimeTable;
