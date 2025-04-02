@@ -1,8 +1,10 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
+import { useLoginMutation } from '../api/mutations/useLoginMutation.ts';
+import { useLogoutMutation } from '../api/mutations/useLogoutMutation.ts';
 
 type AuthContext = {
-  handleLogin: () => Promise<void>;
-  handleLogout: () => Promise<void>;
+  handleLogin: () => void;
+  handleLogout: () => void;
 };
 
 type AuthProviderProps = PropsWithChildren;
@@ -14,19 +16,11 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
  * @param children - The child components that will have access to the authentication context.
  */
 export default function AuthProvider({ children }: AuthProviderProps) {
-  async function handleLogin() {
-    //TODO: Implement a real login with http only cookie
-  }
-
-  async function handleLogout() {
-    //TODO: Implement a real logout with clearing the http only cookie
-  }
-
   return (
     <AuthContext.Provider
       value={{
-        handleLogin: handleLogin,
-        handleLogout: handleLogout,
+        handleLogin: useLoginMutation,
+        handleLogout: useLogoutMutation,
       }}
     >
       {children}
