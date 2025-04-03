@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-interface LoginCredentials {
+export interface LoginCredentials {
   username: string;
   password: string;
 }

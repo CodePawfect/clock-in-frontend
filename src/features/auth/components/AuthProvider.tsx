@@ -1,9 +1,12 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
-import { useLoginMutation } from '../api/mutations/useLoginMutation.ts';
+import {
+  LoginCredentials,
+  useLoginMutation,
+} from '../api/mutations/useLoginMutation.ts';
 import { useLogoutMutation } from '../api/mutations/useLogoutMutation.ts';
 
 type AuthContext = {
-  handleLogin: () => void;
+  handleLogin: (credentials: LoginCredentials) => void;
   handleLogout: () => void;
 };
 
