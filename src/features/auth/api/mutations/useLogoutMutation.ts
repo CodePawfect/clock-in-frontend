@@ -5,6 +5,7 @@ export function useLogoutMutation() {
     mutationFn: async (): Promise<void> => {
       const response = await fetch('/api/logout', {
         method: 'POST',
+        credentials: 'include',
       });
 
       if (!response.ok) {
