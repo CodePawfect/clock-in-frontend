@@ -58,12 +58,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
    * Handles the authentication status by checking if the user is authenticated.
    */
   function handleAuthStatus() {
-    if (authStatusQuery.isSuccess) {
+    if (authStatusQuery.isSuccess && !authStatusQuery.isFetching) {
       const authStatus: AuthStatus = authStatusQuery.data;
 
       setIsLoggedIn(authStatus.isAuthenticated);
       setUser(authStatus.user);
-    } else {
+    } else if (
+      (authStatusQuery.isError || !authStatusQuery.data) &&
+      !authStatusQuery.isFetching
+    ) {
       setIsLoggedIn(false);
       setUser(null);
     }
