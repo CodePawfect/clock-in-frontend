@@ -15,13 +15,16 @@ export interface LoginCredentials {
 export function useLoginMutation() {
   return useMutation<void, Error, LoginCredentials>({
     mutationFn: async (credentials: LoginCredentials): Promise<void> => {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(credentials),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Login failed: ${response.status}`);

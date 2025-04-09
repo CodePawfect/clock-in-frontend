@@ -17,13 +17,16 @@ export function useAuthStatusQuery() {
   return useQuery<AuthStatus, Error>({
     queryKey: ['status'],
     queryFn: async () => {
-      const response = await fetch('/api/auth/me', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/auth/me`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+          },
+          credentials: 'include',
+        }
+      );
 
       if (!response.ok) {
         throw new Error(

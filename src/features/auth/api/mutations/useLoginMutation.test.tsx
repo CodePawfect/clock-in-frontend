@@ -17,7 +17,7 @@ describe('test useLoginMutation hook', () => {
       password: 'testpassword',
     };
 
-    const expectedUrl = 'http://localhost:3000/api/login';
+    const expectedUrl = 'http://localhost:3000/api/auth/login';
     const expectedMethod = 'POST';
     const expectedBody = JSON.stringify(credentials);
 

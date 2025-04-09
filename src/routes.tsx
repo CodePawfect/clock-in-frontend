@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
-import SignInPage from './features/auth/pages/SignInPage.tsx';
-import WorkTimePage from './features/worktimes/pages/WorkTimePage.tsx';
+import SignInPage from './pages/SignInPage.tsx';
+import WorkTimePage from './pages/WorkTimePage.tsx';
 import ProtectedRoute from './features/auth/components/ProtectedRoute.tsx';
 
 /**
@@ -17,6 +17,10 @@ const publicRoutes: RouteObject[] = [
  * Protected routes that require authentication.
  */
 const protectedRoutes: RouteObject[] = [
+  {
+    path: '/',
+    element: <WorkTimePage />,
+  },
   {
     path: '/worktime',
     element: <WorkTimePage />,
