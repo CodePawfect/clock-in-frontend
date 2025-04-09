@@ -37,6 +37,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const logoutMutation = useLogoutMutation();
   const authStatusQuery = useAuthStatusQuery();
 
+  /**
+   * Effect hook that runs when the component mounts or when the authentication status changes.
+   */
   useEffect(() => {
     handleAuthStatus();
   }, [
@@ -45,6 +48,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     authStatusQuery.data,
   ]);
 
+  /**
+   * Handles the authentication status by checking if the user is authenticated.
+   */
   function handleAuthStatus() {
     if (authStatusQuery.isSuccess) {
       const authStatus: AuthStatus = authStatusQuery.data;
@@ -54,6 +60,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  /**
+   * Handles the login process by calling the login mutation.
+   * @param credentials - The login credentials provided by the user.
+   */
   function handleLogin(credentials: LoginCredentials) {
     loginMutation.mutate(credentials, {
       onSuccess: () => {
@@ -65,6 +75,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     });
   }
 
+  /**
+   * Handles the logout process by calling the logout mutation.
+   */
   function handleLogout() {
     logoutMutation.mutate(undefined, {
       onSuccess: () => {
@@ -90,6 +103,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
+/**
+ * Custom hook to use the authentication context.
+ */
 export function useAuth() {
   const context = useContext(AuthContext);
 

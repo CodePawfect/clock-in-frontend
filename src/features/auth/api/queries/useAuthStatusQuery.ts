@@ -1,16 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import { User } from '../../types/User.ts';
 
+/**
+ * The authentication status of the user.
+ */
 export interface AuthStatus {
   isAuthenticated: boolean;
   user: User;
 }
 
+/**
+ * A hook to retrieve the authentication status of the user.
+ * Uses the `/api/auth/me` endpoint to check if the user is authenticated.
+ */
 export function useAuthStatusQuery() {
   return useQuery<AuthStatus, Error>({
     queryKey: ['status'],
     queryFn: async () => {
-      const response = await fetch('/api/auth/status', {
+      const response = await fetch('/api/auth/me', {
         method: 'GET',
         headers: {
           Accept: 'application/json',

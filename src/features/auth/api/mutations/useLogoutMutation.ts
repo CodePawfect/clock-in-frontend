@@ -1,5 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 
+/**
+ * Custom hook to handle user logout.
+ * This hook uses the `useMutation` from React Query to perform a logout operation.
+ */
 export function useLogoutMutation() {
   return useMutation<void, Error, void>({
     mutationFn: async (): Promise<void> => {

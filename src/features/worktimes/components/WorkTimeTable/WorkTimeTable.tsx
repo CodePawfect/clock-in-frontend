@@ -1,5 +1,9 @@
 import { WorkTime } from './types/WorkTime.ts';
 
+/**
+ * WorkTimeTable component
+ * @param workTimes - array of work time entries
+ */
 export default function WorkTimeTable({
   workTimes,
 }: {
