@@ -16,6 +16,9 @@ import {
 } from '../api/queries/useAuthStatusQuery.ts';
 import { User } from '../types/User.ts';
 
+/**
+ * AuthContext type that defines the shape of the authentication context.
+ */
 type AuthContext = {
   handleLogin: (credentials: LoginCredentials) => void;
   handleLogout: () => void;

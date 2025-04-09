@@ -3,6 +3,9 @@ import SignInPage from './features/auth/pages/SignInPage.tsx';
 import WorkTimePage from './features/worktimes/pages/WorkTimePage.tsx';
 import ProtectedRoute from './features/auth/components/ProtectedRoute.tsx';
 
+/**
+ * Public routes that do not require authentication.
+ */
 const publicRoutes: RouteObject[] = [
   {
     path: '/signin',
@@ -10,6 +13,9 @@ const publicRoutes: RouteObject[] = [
   },
 ];
 
+/**
+ * Protected routes that require authentication.
+ */
 const protectedRoutes: RouteObject[] = [
   {
     path: '/worktime',
@@ -17,6 +23,9 @@ const protectedRoutes: RouteObject[] = [
   },
 ];
 
+/**
+ * All routes that are used in the application.
+ */
 export const routes: RouteObject[] = [
   ...publicRoutes,
   ...protectedRoutes.map((route) => ({
