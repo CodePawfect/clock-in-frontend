@@ -32,13 +32,5 @@ export function useLoginMutation() {
 
       return;
     },
-
-    onSuccess: () => {
-      console.log('Login successful (HttpOnly cookie is set)');
-    },
-
-    onError: (error) => {
-      console.error('Login mutation failed:', error.message);
-    },
   });
 }

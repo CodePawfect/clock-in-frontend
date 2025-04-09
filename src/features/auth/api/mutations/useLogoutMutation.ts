@@ -21,13 +21,5 @@ export function useLogoutMutation() {
 
       return;
     },
-
-    onSuccess: () => {
-      console.log('Logout was successful (HttpOnly cookie is invalidated)');
-    },
-
-    onError: (error) => {
-      console.error('Logout mutation failed:', error.message);
-    },
   });
 }

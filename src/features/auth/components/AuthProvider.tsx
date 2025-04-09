@@ -15,6 +15,7 @@ import {
   useAuthStatusQuery,
 } from '../api/queries/useAuthStatusQuery.ts';
 import { User } from '../types/User.ts';
+import { Navigate } from 'react-router-dom';
 
 /**
  * AuthContext type that defines the shape of the authentication context.
@@ -71,9 +72,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     loginMutation.mutate(credentials, {
       onSuccess: () => {
         setIsLoggedIn(true);
+        return <Navigate to={'/'} />;
       },
       onError: (error) => {
-        console.error('Login mutation failed:', error.message);
+        console.error('Login failed:', error.message);
       },
     });
   }
@@ -85,9 +87,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     logoutMutation.mutate(undefined, {
       onSuccess: () => {
         setIsLoggedIn(false);
+        setUser(null);
       },
       onError: (error) => {
-        console.error('Logout mutation failed:', error.message);
+        console.error('Logout failed:', error.message);
       },
     });
   }
