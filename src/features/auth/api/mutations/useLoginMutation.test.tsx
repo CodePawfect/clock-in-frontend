@@ -11,7 +11,7 @@ describe('test useLoginMutation hook', () => {
     fetchMocker.resetMocks();
   });
 
-  test('should send correct POST request', async () => {
+  test('should success', async () => {
     const credentials: LoginCredentials = {
       username: 'testuser',
       password: 'testpassword',
@@ -38,5 +38,40 @@ describe('test useLoginMutation hook', () => {
 
     const requestBody = await fetchMock.requests()[0].text();
     expect(requestBody).toEqual(expectedBody);
+
+    expect(result.current.isSuccess).toBe(true);
+    expect(result.current.isError).toBe(false);
+  });
+
+  test('should error', async () => {
+    const credentials: LoginCredentials = {
+      username: 'testuser',
+      password: 'testpassword',
+    };
+
+    fetchMock.mockResponseOnce(
+      JSON.stringify({ message: 'Invalid credentials' }),
+      { status: 401 }
+    );
+
+    const { result } = renderHook(() => useLoginMutation(), {
+      wrapper: createQueryClientProviderWrapper(),
+    });
+
+    result.current.mutate(credentials);
+
+    await waitFor(() => {
+      expect(result.current.isError).toBe(true);
+    });
+
+    expect(result.current.isSuccess).toBe(false);
+    expect(result.current.isError).toBe(true);
+
+    expect(result.current.error).toEqual(
+      expect.objectContaining({
+        message: expect.any(String),
+        status: expect.any(Number),
+      })
+    );
   });
 });
