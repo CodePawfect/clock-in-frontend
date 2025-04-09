@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { User } from '../../types/User.ts';
+import { ApiError } from '../../../../commons/ApiError.ts';
 
 /**
  * The authentication status of the user.
@@ -14,7 +15,7 @@ export interface AuthStatus {
  * Uses the `/api/auth/me` endpoint to check if the user is authenticated.
  */
 export function useAuthStatusQuery() {
-  return useQuery<AuthStatus, Error>({
+  return useQuery<AuthStatus, ApiError>({
     queryKey: ['status'],
     queryFn: async () => {
       const response = await fetch(
@@ -29,9 +30,10 @@ export function useAuthStatusQuery() {
       );
 
       if (!response.ok) {
-        throw new Error(
-          `Error while retrieving auth status (status: ${response.status})`
-        );
+        throw {
+          message: `Retrieving auth status failed with status: ${response.status}`,
+          status: response.status,
+        } as ApiError;
       }
 
       const data: AuthStatus = await response.json();

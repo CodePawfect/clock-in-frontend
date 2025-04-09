@@ -16,6 +16,8 @@ import {
 } from '../api/queries/useAuthStatusQuery.ts';
 import { User } from '../types/User.ts';
 import { Navigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { ApiError } from '../../../commons/ApiError.ts';
 
 /**
  * AuthContext type that defines the shape of the authentication context.
@@ -61,6 +63,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
       setIsLoggedIn(authStatus.isAuthenticated);
       setUser(authStatus.user);
+    } else {
+      setIsLoggedIn(false);
+      setUser(null);
     }
   }
 
@@ -74,8 +79,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsLoggedIn(true);
         return <Navigate to={'/'} />;
       },
-      onError: (error) => {
-        console.error('Login failed:', error.message);
+      onError: (error: ApiError) => {
+        if (error.status === 401) {
+          toast.error('Invalid username or password');
+        }
+
+        if (error.status === 500) {
+          toast.error('Server error, please try again later');
+        }
       },
     });
   }
@@ -89,8 +100,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsLoggedIn(false);
         setUser(null);
       },
-      onError: (error) => {
-        console.error('Logout failed:', error.message);
+      onError: (error: ApiError) => {
+        if (error.status === 401) {
+          toast.error('You are not logged in');
+        }
+
+        if (error.status === 500) {
+          toast.error('Server error, please try again later');
+        }
       },
     });
   }
