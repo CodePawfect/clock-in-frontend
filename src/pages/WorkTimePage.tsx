@@ -1,7 +1,6 @@
+import HeaderSection from '../features/worktimes/components/tables/header/HeaderSection.tsx';
+
+/** serves as composition layer and arranging components to create the final view for work times */
 export default function WorkTimePage() {
-  return (
-    <div>
-      <h1>Work Time Page</h1>
-    </div>
-  );
+  return <HeaderSection />;
 }
