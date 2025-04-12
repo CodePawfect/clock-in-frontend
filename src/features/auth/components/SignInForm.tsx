@@ -1,7 +1,7 @@
 import { useAuth } from './AuthProvider.tsx';
 import { FormEvent } from 'react';
 import './SignInForm.css';
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
 
 export default function SignInForm() {
   const { handleLogin } = useAuth();
@@ -17,7 +17,7 @@ export default function SignInForm() {
     if (username && password) {
       handleLogin({ username, password });
     } else {
-     toast.error('Please fill in all fields');
+      toast.error('Please fill in all fields');
     }
   }
 
