@@ -21,10 +21,6 @@ const protectedRoutes: RouteObject[] = [
     path: '/',
     element: <WorkTimePage />,
   },
-  {
-    path: '/worktime',
-    element: <WorkTimePage />,
-  },
 ];
 
 /**

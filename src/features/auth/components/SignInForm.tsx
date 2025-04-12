@@ -2,9 +2,11 @@ import { useAuth } from './AuthProvider.tsx';
 import { FormEvent } from 'react';
 import './SignInForm.css';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignInForm() {
   const { handleLogin } = useAuth();
+  const navigate = useNavigate();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -15,7 +17,7 @@ export default function SignInForm() {
     const password = formData.get('password') as string;
 
     if (username && password) {
-      handleLogin({ username, password });
+      handleLogin({ username, password }).then(() => navigate('/'));
     } else {
       toast.error('Please fill in all fields');
     }

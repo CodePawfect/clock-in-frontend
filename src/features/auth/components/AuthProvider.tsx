@@ -1,21 +1,10 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, PropsWithChildren, useContext, useState } from 'react';
 import {
   LoginCredentials,
   useLoginMutation,
 } from '../api/mutations/useLoginMutation.ts';
 import { useLogoutMutation } from '../api/mutations/useLogoutMutation.ts';
-import {
-  AuthStatus,
-  useAuthStatusQuery,
-} from '../api/queries/useAuthStatusQuery.ts';
 import { User } from '../types/User.ts';
-import { Navigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../../commons/ApiError.ts';
 
@@ -23,8 +12,8 @@ import { ApiError } from '../../../commons/ApiError.ts';
  * AuthContext type that defines the shape of the authentication context.
  */
 type AuthContext = {
-  handleLogin: (credentials: LoginCredentials) => void;
-  handleLogout: () => void;
+  handleLogin: (credentials: LoginCredentials) => Promise<void>;
+  handleLogout: () => Promise<void>;
   isLoggedIn: boolean;
   loggedInUser: User | null;
 };
@@ -41,46 +30,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const loginMutation = useLoginMutation();
   const logoutMutation = useLogoutMutation();
-  const authStatusQuery = useAuthStatusQuery();
-
-  /**
-   * Effect hook that runs when the component mounts or when the authentication status changes.
-   */
-  useEffect(() => {
-    handleAuthStatus();
-  }, [
-    authStatusQuery.isSuccess,
-    authStatusQuery.isError,
-    authStatusQuery.data,
-  ]);
-
-  /**
-   * Handles the authentication status by checking if the user is authenticated.
-   */
-  function handleAuthStatus() {
-    if (authStatusQuery.isSuccess && !authStatusQuery.isFetching) {
-      const authStatus: AuthStatus = authStatusQuery.data;
-
-      setIsLoggedIn(authStatus.isAuthenticated);
-      setUser(authStatus.user);
-    } else if (
-      (authStatusQuery.isError || !authStatusQuery.data) &&
-      !authStatusQuery.isFetching
-    ) {
-      setIsLoggedIn(false);
-      setUser(null);
-    }
-  }
 
   /**
    * Handles the login process by calling the login mutation.
    * @param credentials - The login credentials provided by the user.
    */
-  function handleLogin(credentials: LoginCredentials) {
-    loginMutation.mutate(credentials, {
+  async function handleLogin(credentials: LoginCredentials) {
+    await loginMutation.mutateAsync(credentials, {
       onSuccess: () => {
         setIsLoggedIn(true);
-        return <Navigate to={'/'} />;
       },
       onError: (error: ApiError) => {
         if (error.status === 401) {
@@ -97,8 +55,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   /**
    * Handles the logout process by calling the logout mutation.
    */
-  function handleLogout() {
-    logoutMutation.mutate(undefined, {
+  async function handleLogout() {
+    await logoutMutation.mutateAsync(undefined, {
       onSuccess: () => {
         setIsLoggedIn(false);
         setUser(null);
