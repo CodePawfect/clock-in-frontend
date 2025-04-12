@@ -14,6 +14,11 @@
   background: linear-gradient(to bottom right, #4158d0, #c850c0) fixed;
 }
 
+.login-section h1 {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
