@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -97,4 +98,20 @@
 
 .submit-button:hover {
   background-color: #5a75e8;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
