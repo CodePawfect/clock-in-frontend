@@ -10,6 +10,8 @@
   box-sizing: border-box;
 
   padding-bottom: 20vh;
+
+  background: linear-gradient(to bottom right, #4158d0, #c850c0) fixed;
 }
 
 .form-container {
@@ -90,8 +92,4 @@
 
 .submit-button:hover {
   background-color: #5a75e8;
-}
-
-body {
-  background: linear-gradient(to bottom right, #4158d0, #c850c0) fixed;
 }
