@@ -1,6 +1,6 @@
 # User interface for Clock:In
 
-**Clock:In** is a work time management application for employees and employers.
+🕥 **Clock:In** is a work time management application for employees and employers.
 
 ## ✨ Features
 
@@ -35,6 +35,16 @@
 In the project directory, you can run:
 
 - **`npm run dev`** or **`yarn dev`**: Runs the app in development mode. Open [http://localhost:5173](http://localhost:5173) (or the port specified by Vite) to view it in the browser. The page will reload if you make edits.
+
+## 🎺 Usage
+
+The UI needs to be connected to the backend API. You can find the backend repository here:
+
+```bash
+git clone https://github.com/CodePawfect/clock-in-service.git
+```
+
+Follow the instructions in the backend repository to set it up.
 
 ## 🌐 API Interaction
 
