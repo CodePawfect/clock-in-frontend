@@ -2,7 +2,7 @@
 
 🕥 **Clock:In** is a work time management application for employees and employers.
 
-**⚠️ NOTE: This project is currently under development and should be considered alpha/experimental. Use at your own risk! APIs may change frequently without notice. ⚠️**
+**⚠️ NOTE: This project is currently under development and should be considered alpha/experimental. Use at your own risk! ⚠️**
 
 ## ✨ Features
 
