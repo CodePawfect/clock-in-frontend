@@ -21,18 +21,24 @@ export default function SignInForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div id="form-content-container">
-        <div className="form-input-label-container">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username" required />
+    // Use className for the main container if styled by SignInForm.css
+    <div className="form-container">
+      <h1>Clock:In</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-content">
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" className="submit-button">
+            Login
+          </button>
         </div>
-        <div className="form-input-label-container">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
