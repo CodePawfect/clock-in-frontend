@@ -23,6 +23,8 @@ export default function SignInForm() {
     }
   }
 
+  //TODO: extract Title in own component and use in SignInPage
+  //TODO: extract footer in own component and use in SignInPage
   return (
     <div className="login-section">
       <h1>Clock:In</h1>
