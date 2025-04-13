@@ -46,9 +46,9 @@ export default function SignInForm() {
         </form>
       </div>
       <div className="footer">
-        <p>PRIVACY</p>
-        <p>IMPRINT</p>
-        <p>CONTACT</p>
+        <p className="footer-element">PRIVACY</p>
+        <p className="footer-element">IMPRINT</p>
+        <p className="footer-element">CONTACT</p>
       </div>
     </div>
   );
