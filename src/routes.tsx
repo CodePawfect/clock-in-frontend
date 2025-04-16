@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import SignInPage from './pages/SignInPage.tsx';
 import WorkTimePage from './pages/WorkTimePage.tsx';
-import ProtectedRoute from './features/auth/components/ProtectedRoute.tsx';
+import ProtectedRoute from './features/auth/components/security/ProtectedRoute.tsx';
 
 /**
  * Public routes that do not require authentication.

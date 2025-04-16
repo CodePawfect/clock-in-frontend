@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import { routes } from './routes.tsx';
-import AuthProvider from './features/auth/components/AuthProvider.tsx';
+import AuthProvider from './features/auth/components/security/AuthProvider.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const router = createBrowserRouter(routes);

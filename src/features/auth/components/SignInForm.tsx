@@ -1,4 +1,4 @@
-import { useAuth } from './AuthProvider.tsx';
+import { useAuth } from './security/AuthProvider.tsx';
 import { FormEvent } from 'react';
 import './SignInForm.css';
 import toast from 'react-hot-toast';
@@ -23,8 +23,6 @@ export default function SignInForm() {
     }
   }
 
-  //TODO: extract Title in own component and use in SignInPage
-  //TODO: extract footer in own component and use in SignInPage
   return (
     <div className="login-section">
       <h1>Clock:In</h1>
@@ -44,11 +42,6 @@ export default function SignInForm() {
             </button>
           </div>
         </form>
-      </div>
-      <div className="footer">
-        <p className="footer-element">PRIVACY</p>
-        <p className="footer-element">IMPRINT</p>
-        <p className="footer-element">CONTACT</p>
       </div>
     </div>
   );

@@ -2,11 +2,11 @@ import { createContext, PropsWithChildren, useContext, useState } from 'react';
 import {
   LoginCredentials,
   useLoginMutation,
-} from '../api/mutations/useLoginMutation.ts';
-import { useLogoutMutation } from '../api/mutations/useLogoutMutation.ts';
-import { User } from '../types/User.ts';
+} from '../../api/mutations/useLoginMutation.ts';
+import { useLogoutMutation } from '../../api/mutations/useLogoutMutation.ts';
+import { User } from '../../types/User.ts';
 import toast from 'react-hot-toast';
-import { ApiError } from '../../../commons/ApiError.ts';
+import { ApiError } from '../../../../commons/ApiError.ts';
 
 /**
  * AuthContext type that defines the shape of the authentication context.
