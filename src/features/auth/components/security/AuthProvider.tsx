@@ -6,7 +6,7 @@ import {
 import { useLogoutMutation } from '../../api/mutations/useLogoutMutation.ts';
 import { User } from '../../types/User.ts';
 import toast from 'react-hot-toast';
-import { ApiError } from '../../../../commons/ApiError.ts';
+import { ApiError } from '../../../../commons/types/ApiError.ts';
 
 /**
  * AuthContext type that defines the shape of the authentication context.

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { ApiError } from '../../../../commons/ApiError.ts';
+import { ApiError } from '../../../../commons/types/ApiError.ts';
 
 /**
  * Interface representing the login credentials.

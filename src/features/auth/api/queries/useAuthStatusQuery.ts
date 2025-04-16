@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { User } from '../../types/User.ts';
-import { ApiError } from '../../../../commons/ApiError.ts';
+import { ApiError } from '../../../../commons/types/ApiError.ts';
 
 /**
  * The authentication status of the user.
