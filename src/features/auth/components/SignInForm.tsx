@@ -17,7 +17,7 @@ export default function SignInForm() {
     const password = formData.get('password') as string;
 
     if (username && password) {
-      handleLogin({ username, password }).then(() => navigate('/'));
+      handleLogin({ username, password }).then(() => navigate('/worktime'));
     } else {
       toast.error('Please fill in all fields');
     }
