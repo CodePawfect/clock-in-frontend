@@ -18,6 +18,11 @@
 .navbar-icon {
   width: 2.5rem;
   height: 2.5rem;
+  color: white;
+}
+
+.navbar-icon--active {
+  color: violet;
 }
 
 @media (max-width: 600px) {
