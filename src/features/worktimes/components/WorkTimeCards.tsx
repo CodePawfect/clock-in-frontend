@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { WorkTime } from './types/WorkTime.ts';
-import { CalendarWeek } from '../../../../commons/CalenderWeek.ts';
+import { CalendarWeek } from '../../../commons/CalenderWeek.ts';
 
 /**
  * WorkTimeTable component
