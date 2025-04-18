@@ -3,6 +3,8 @@ import SignInPage from './pages/SignInPage.tsx';
 import WorkTimePage from './pages/WorkTimePage.tsx';
 import ProtectedRoute from './features/auth/components/security/ProtectedRoute.tsx';
 import HomePage from './pages/HomePage.tsx';
+import EventPage from './pages/EventPage.tsx';
+import SettingsPage from './pages/SettingsPage.tsx';
 
 /**
  * Public routes that do not require authentication.
@@ -23,8 +25,16 @@ const protectedRoutes: RouteObject[] = [
     element: <HomePage />,
   },
   {
-    path: '/worktime',
+    path: '/worktimes',
     element: <WorkTimePage />,
+  },
+  {
+    path: '/events',
+    element: <EventPage />,
+  },
+  {
+    path: '/settings',
+    element: <SettingsPage />,
   },
 ];
 

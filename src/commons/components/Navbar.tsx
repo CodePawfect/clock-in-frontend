@@ -10,7 +10,7 @@ import {
 const navItems = [
   { to: '/', Icon: HomeIcon },
   { to: '/events', Icon: NewspaperIcon },
-  { to: '/worktime', Icon: ClockIcon },
+  { to: '/worktimes', Icon: ClockIcon },
   { to: '/settings', Icon: Cog6ToothIcon },
 ];
 
