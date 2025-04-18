@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { WorkTime } from './types/WorkTime.ts';
 import { CalendarWeek } from '../../../commons/CalenderWeek.ts';
+import './WorkTimeCards.css';
 
 /**
  * WorkTimeTable component
@@ -25,13 +26,19 @@ export default function WorkTimeCards() {
 
   return (
     <div>
-      {data.map((workTime) => (
-        <div className="worktime-card" key={workTime.id}>
-          <div className="worktime">{workTime.date}</div>
-          <div className="worktime">{workTime.hours}</div>
-          <div className="worktime">{workTime.note}</div>
+      {data.length === 0 ? (
+        <div className="worktime-card--empty">
+          <span>No work times available</span>
         </div>
-      ))}
+      ) : (
+        data.map((workTime) => (
+          <div className="worktime-card" key={workTime.id}>
+            <div className="worktime">{workTime.date}</div>
+            <div className="worktime">{workTime.hours}</div>
+            <div className="worktime">{workTime.note}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 }

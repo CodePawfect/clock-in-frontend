@@ -1,0 +1,16 @@
+.worktime-card--empty {
+}
+
+.worktime-card {
+}
+
+.worktime {
+}
+
+@media (max-width: 600px) {
+  .worktime-card--empty {
+  }
+
+  .worktime-card {
+  }
+}
