@@ -28,14 +28,16 @@ export default function WorkTimeCards() {
     <div>
       {data.length === 0 ? (
         <div className="worktime-card--empty">
-          <span>No work times available</span>
+          <span>No work times for week: {week}</span>
         </div>
       ) : (
         data.map((workTime) => (
           <div className="worktime-card" key={workTime.id}>
-            <div className="worktime">{workTime.date}</div>
-            <div className="worktime">{workTime.hours}</div>
-            <div className="worktime">{workTime.note}</div>
+            <div className="worktime-card--time">
+              <div className="worktime">{workTime.date}</div>
+              <div className="worktime">{workTime.hours} hours</div>
+            </div>
+            <div className="worktime worktime-note">{workTime.note}</div>
           </div>
         ))
       )}
