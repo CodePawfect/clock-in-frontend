@@ -20,7 +20,7 @@ export function useWorkTimesQuery(week: number, year: number) {
  */
 async function fetchWorkTimes(week: number, year: number): Promise<WorkTime[]> {
   const res = await fetch(
-    `http://localhost:8080/api/worktimes/${week}/${year}`,
+    `${import.meta.env.VITE_BASE_URL}/api/worktimes/${week}/${year}`,
     { credentials: 'include' }
   );
 
