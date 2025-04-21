@@ -1,16 +1,24 @@
 import './HeaderSection.css';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import { useCalenderWeekContext } from '../context/CalenderWeekContextType.tsx';
 
 export default function HeaderSection() {
+  const {
+    getCalenderWeek,
+    getCalenderYear,
+    setPrevWeekAndYear,
+    setNextWeekAndYear,
+  } = useCalenderWeekContext();
+
   return (
     <div className="find-good-class-name">
       <div className="header-section">
-        <h1>2025</h1>
+        <h1>{getCalenderYear()}</h1>
         <div className="header-container">
-          <ChevronLeftIcon />
-          <h1>KW: 15</h1>
-          <ChevronRightIcon />
+          <ChevronLeftIcon onClick={() => setPrevWeekAndYear()} />
+          <h1>KW: {getCalenderWeek()}</h1>
+          <ChevronRightIcon onClick={() => setNextWeekAndYear()} />
         </div>
       </div>
       <button className="add-button">Add</button>
