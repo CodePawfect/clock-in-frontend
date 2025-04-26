@@ -1,5 +1,4 @@
 import { useAuth } from './security/AuthProvider.tsx';
-import './SignInForm.css';
 import { useNavigate } from 'react-router-dom';
 
 import { z } from 'zod';
@@ -16,6 +15,8 @@ import {
 } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input.tsx';
+import { Card } from '@/components/ui/card.tsx';
+import { Label } from '@/components/ui/label.tsx';
 
 const signInSchema = z.object({
   username: z.string().min(1, 'Username is required'),
@@ -51,51 +52,55 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="login-section">
-      <h1>Clock:In</h1>
-      <div className="form-container">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Username field */}
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <div className="min-h-screen flex flex-col gap-9 items-center justify-center pb-20">
+      <Label className="text-5xl font-extrabold text-center text-gray-800">
+        Clock:In
+      </Label>
+      <Card className="w-70 md:w-70 lg:w-90 p-7 shadow-lg rounded-2xl">
+        <div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              {/* Username field */}
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-1xl">Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            {/* Password field */}
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Your password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              {/* Password field */}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-1xl">Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
-          </form>
-        </Form>
-      </div>
+              <Button type="submit" className="w-full mt-3">
+                Login
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </Card>
     </div>
   );
 }
