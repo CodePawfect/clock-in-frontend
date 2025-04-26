@@ -1,11 +1,9 @@
-import './Footer.css';
-
 export default function Footer() {
   return (
-    <div className="footer">
-      <p className="footer-element">PRIVACY</p>
-      <p className="footer-element">IMPRINT</p>
-      <p className="footer-element">CONTACT</p>
+    <div className="fixed bottom-0 w-full flex flex-row justify-center gap-9 text-black">
+      <p>PRIVACY</p>
+      <p>IMPRINT</p>
+      <p>CONTACT</p>
     </div>
   );
 }
