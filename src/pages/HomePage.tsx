@@ -1,5 +1,3 @@
-import Navbar from '../commons/components/Navbar.tsx';
-
 export default function HomePage() {
   return (
     <>
@@ -7,7 +5,6 @@ export default function HomePage() {
         <h1>Welcome to the Home Page</h1>
         <p>This is the main content of the home page.</p>
       </div>
-      <Navbar />
     </>
   );
 }

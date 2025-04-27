@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import createFetchMock from 'vitest-fetch-mock';
 import { renderHook, waitFor } from '@testing-library/react';
-import createQueryClientProviderWrapper from '../../../../test-utils/QueryClientProviderWrapper.tsx';
+import createQueryClientProviderWrapper from '../../../test-utils/QueryClientProviderWrapper.tsx';
 import { useWorkTimesQuery } from './useWorkTimesQuery.ts';
 
 const fetchMocker = createFetchMock(vi);
