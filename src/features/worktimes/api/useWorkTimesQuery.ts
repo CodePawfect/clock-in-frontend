@@ -1,4 +1,4 @@
-import { WorkTime } from '../types/WorkTime.ts';
+import { WorkTime } from '@/features/worktimes/types/WorkTime.ts';
 import { useQuery } from '@tanstack/react-query';
 
 /**

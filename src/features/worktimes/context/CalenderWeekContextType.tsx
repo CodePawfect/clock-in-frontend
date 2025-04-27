@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { CalendarWeek } from '../../../../commons/CalenderWeek.ts';
+import { CalendarWeek } from '../../../commons/CalenderWeek.ts';
 
 export interface CalenderWeekContextType {
   getCalenderWeek: () => number;
