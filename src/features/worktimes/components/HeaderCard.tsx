@@ -1,34 +1,47 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card.tsx';
+import { Card, CardHeader } from '@/components/ui/card.tsx';
+import { format } from 'date-fns';
 import { Button } from '@/components/ui/button.tsx';
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import { cn } from '@/lib/utils';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { useState } from 'react';
+import { CalendarIcon } from 'lucide-react';
 
 export default function HeaderCard() {
+  const [date, setDate] = useState<Date>();
+
   return (
     <>
       <Card className="@container/card">
-        <div className="flex flex-row justify-between items-center">
-          <CardHeader className="flex-1">
-            <CardDescription>Your Worktimes</CardDescription>
-            <CardTitle className="@[250px]/card:text-2xl @[500px]/card:text-3xl">
-              2025
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-row flex-1">
-            <ChevronLeftIcon className="h-5 w-5" />
-            <span>cw 14</span>
-            <ChevronRightIcon className="h-5 w-5" />
-          </CardContent>
-          <CardFooter>
-            <Button>Add</Button>
-          </CardFooter>
-        </div>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={'outline'}
+                className={cn(
+                  'w-[280px] w-50 justify-start text-left font-normal',
+                  !date && 'text-muted-foreground'
+                )}
+              >
+                <CalendarIcon />
+                {date ? format(date, 'PPP') : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+          <Button>Add</Button>
+        </CardHeader>
       </Card>
     </>
   );
