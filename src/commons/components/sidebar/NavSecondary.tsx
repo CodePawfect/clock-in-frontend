@@ -6,17 +6,18 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { HelpCircleIcon, SettingsIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function NavSecondary({ ...props }) {
   const items = [
     {
       title: 'Settings',
-      url: '#',
+      url: '/settings',
       icon: SettingsIcon,
     },
     {
       title: 'Get Help',
-      url: '#',
+      url: '/help',
       icon: HelpCircleIcon,
     },
   ];
@@ -28,10 +29,10 @@ export default function NavSecondary({ ...props }) {
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
+                <Link to={item.url} className="flex items-center space-x-2">
                   <item.icon />
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
